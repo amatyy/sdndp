@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+    font-family: "Lato";
+}
+
+:root {
+    --main: #070D17;
+    --main-gray: #495057;
+    --main-purple: #5737EE;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: var(--main);
+}
+
+.current-chapter {
+    width: calc(100vw - 50px);
+    height: calc(70vh - 25px);
+    position: absolute;
+    transform: translate(0px, 0px);
+    left: 25px;
+    top: 25px;
+    border: 2px solid var(--main-gray);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-chapter-container {
+    width: calc(100% - 33px);
+    height: calc(100% - 33px);
+}
+
+.current-chapter-thumbnail {
+    width: 100%;
+    height: 190px;
+    background: blue;
+}
+
+.current-chapter-data {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.current-chapter-data div {
+    width: 50%;
+}
+
+.current-chapter-lessons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.current-chapter-name {
+    font-size: 36px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 30px;
+}
+
+button.current-chapter-start {
+    border: 2px solid var(--main-purple);
+    border-radius: 25px;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    width: 194px;
+    height: 45px;
+    position: absolute;
+    transform: translate(0px, 0px);
+    left: 20px;
+    bottom: 20px;
+    outline: none;
+}
+
+.current-progress {
+    width: calc(100vw - 50px);
+    height: 140px;
+    border: 2px solid var(--main-gray);
+    border-radius: 20px;
+    position: absolute;
+    transform: translate(0px, 0px);
+    left: 25px;
+    bottom: 25px;
+}
+
+.progress-title {
+    color: #fff;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
+.progress-ammount {
+    color: #fff;
+    font-size: 32px;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.progress-pgs {
+    width: calc(100% - 50px);
+    height: 12.5px;
+    margin-left: 25px;
+    margin-top: 15px;
+    border-radius: 20px;
+}
+
+.fill {
+    width: 75%;
+    height: 12.5px;
+    border-radius: 20px;
+    background: #6A35EE;
+}
+
+.main-container {
+    display: none;
+}
+
+.learning-header {
+    width: calc(100vw - 50px);
+    height: 70px;
+    position: absolute;
+    transform: translate(0px, 0px);
+    left: 25px;
+    top: 25px;
+    border: 1px solid var(--main-gray);
+    border-radius: 0 50px 50px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.learning-header-bar {
+    width: 4px;
+    height: 72px;
+    background: #6A35EE;
+}
+
+.learning-header-left {
+    width: calc(80% - 10px);
+    margin-left: 10px;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    color: #fff;
+    gap: 5px;
+}
+
+.learning-title {
+    font-size: 13px;
+}
+
+.learning-chapter {
+    font-size: 20px;
+}
+
+.learning-lesson {
+    color: #fff;
+}
+
+.learning-content-container {
+    width: calc(100% - 50px);
+    position: absolute;
+    transform: translate(0px, 0px);
+    left: 25px;
+    top: 125px;
+}
+
+.learning-content {
+    width: 100%;
+    min-height: 100px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.learning-content .header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.learning-footer {
+    width: calc(100vw - 50px);
+    height: 50px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.learning-footer button {
+    width: 125px;
+    height: 35px;
+    outline: none;
+    border: 2px solid var(--main-purple);
+    background: transparent;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 15px;
+}
+
+.LTX-text {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.table {
+    width: calc(100% - 10px);
+    padding: 10px;
+    border: 2px solid var(--main-gray);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.table thead, .table tbody {
+    color: #fff;
+}
+
+.table th, .table td {
+    color: #fff;
+    padding: 5px;
+    text-align: left;
+}
+
+.table thead th {
+    font-weight: bold;
+}
+
+.centered-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
