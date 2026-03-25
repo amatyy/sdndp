@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+        
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="current-chapter">
+            <div class="current-chapter-container">
+                <div class="current-chapter-thumbnail"></div>
+                <div class="current-chapter-data">
+                    <div class="current-chapter-chapter">Rozdział 1</div>
+                    <div class="current-chapter-lessons">15 lekcji</div>
+                </div>
+                <div class="current-chapter-name">Kinematyka</div>
+    
+                <button class="current-chapter-start">Zacznij</button>
+            </div>
+        </div>
+    
+        <div class="current-progress">
+            <div class="progress-title">Ukończone</div>
+            <div class="progress-ammount">75%</div>
+            <div class="progress-pgs">
+                <div class="fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="learning-container">
+        <div class="learning-header">
+            <div class="learning-header-bar"></div>
+
+            <div class="learning-header-left">
+                <div class="learning-title">Kinematyka</div>
+                <div class="learning-chapter">Kinematyka</div>
+            </div>
+
+            <div class="learning-header-right">
+                <div class="learning-lesson">1/30</div>
+            </div>
+        </div>
+
+        <div class="learning-content-container">
+            <div class="learning-content">
+                <div class="header">Lorem ipsum</div>
+                <div class="text">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</div>
+            </div>
+    
+            <div class="learning-footer">
+                <button class="test-yourself">Sprawdź się</button>
+                <button class="next">Dalej</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
