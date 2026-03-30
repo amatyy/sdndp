@@ -1,7 +1,30 @@
+let currentChapter = "Podstawy języka";
+let currentChapterInt = 1;
+let currentLessonNumber = Number(localStorage.getItem("currentLessonNumber")) || 1;
+let currentLesson = `lesson${currentLessonNumber}`;
+
+localStorage.setItem("currentLessonNumber", currentLessonNumber);
+localStorage.setItem("currentLesson", currentLesson);
+
 let learningContent = document.querySelector('.learning-content');
 let learningTitle = document.querySelector(".learning-title");
 let learningChapter = document.querySelector(".learning-chapter");
 let learningLesson = document.querySelector(".learning-lesson");
+
+let currentChapterStart = document.querySelector(".current-chapter-start");
+let mainContainer = document.querySelector(".main-container");
+let learningContainer = document.querySelector(".learning-container");
+
+let nextbtn = document.querySelector("button.next");
+
+currentChapterStart.addEventListener("click", ()=>{
+    mainContainer.style.opacity = "0";
+    learningContainer.style.display = "block";
+    setTimeout(() => {
+        mainContainer.style.display = "none";
+        learningContainer.style.opacity = "1";
+    }, 1000);
+})
 
 function waitForMathJax() {
     return new Promise(resolve => {
@@ -23,6 +46,8 @@ function parseContent(str) {
     const tableBlocks = [];
 
     str = str.replace(/''(.*?)''/g, '"$1"');
+
+    str = str.replace(/_([^_]+)_/g, '<sub>$1</sub>');
 
     str = str.replace(/\{&(.*?)&\}/gs, (match, content) => {
         const index = ltxBlocks.length;
@@ -150,7 +175,13 @@ function updateInfo(chapter, title, lesson) {
     learningLesson.textContent = lesson;
 }
 
-fetch('./lessons/lesson3.json').then(r => r.json()).then(async data => {
+let DCurrentChapter = document.querySelector('.current-chapter-chapter');
+let DCurrentChapterName = document.querySelector(".current-chapter-name");
+
+async function loadLesson(currentLesson) {
+    const response = await fetch(`./lessons/${currentLesson}.json`);
+    const data = await response.json();
+
     const raw = data.content;
     learningContent.innerHTML = parseContent(raw);
 
@@ -158,4 +189,112 @@ fetch('./lessons/lesson3.json').then(r => r.json()).then(async data => {
 
     await waitForMathJax();
     MathJax.typesetPromise([learningContent]);
+}
+
+async function reload() {
+    learningContainer.style.transition = "opacity 1s";
+    learningContainer.style.opacity = "0";
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    loadLesson(currentLesson);
+    window.scrollTo(0, 0);
+
+    learningContainer.style.transition = "opacity 0.5s";
+    learningContainer.style.opacity = "1";
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+}
+
+nextbtn.addEventListener("click", ()=>{
+    currentLessonNumber++;
+    currentLesson = `lesson${currentLessonNumber}`;
+    localStorage.setItem("currentLessonNumber", currentLessonNumber);
+    localStorage.setItem("currentLesson", currentLesson);
+    reload();
+})
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    DCurrentChapter.textContent = `Rozdział ${currentChapterInt}`;
+    DCurrentChapterName.textContent = currentChapter;
+    loadLesson(currentLesson);
+})
+
+let list = document.querySelector(".lsns .list");
+
+function truncate(text, maxLength) {
+    if (text.length <= maxLength) {
+        return text;
+    }
+
+    return text.slice(0, maxLength) + "...";
+}
+
+function CreateLSNS(lesson_number, chapter_name, lesson_name) {
+    const html = `<div class="lsns-element lsns${lesson_number}">
+                <div class="lsns-number">${lesson_number}</div>
+                <div class="lsns-data">
+                    <div class="lsns-chapter">${chapter_name}</div>
+                    <div class="lsns-lesson">${truncate(lesson_name, 14)}</div>
+                </div>
+            </div>`
+    
+    list.insertAdjacentHTML("beforeend", html);
+}
+
+let lsns_back = document.querySelector("button.lsns-back");
+let lsns = document.querySelector(".lsns");
+
+function hideLSNS() {
+    lsns.style.opacity = "0";
+    setTimeout(() => {
+        lsns.style.display = "none";
+    }, 1000);
+}
+
+function showLSNS() {
+    lsns.style.display = "block";
+    setTimeout(() => {
+        lsns.style.opacity = "1"
+    }, 0);
+}
+
+fetch('./output.json').then(r => r.json()).then(data => {
+    let i = 1;
+
+    for (let n = 1; n <= 56; n++) {
+        const key = `lesson${n}`;
+
+        if (data[key]) {
+            CreateLSNS(i, data[key].chapter, data[key].title);
+            i++;
+        }
+    }
+
+    let lsnsElements = document.querySelectorAll(".lsns-element");
+
+    lsnsElements.forEach(e=>{
+        e.addEventListener("click", ()=>{
+            let lsnsLesson = e.classList[1];
+            let lessonClass = lsnsLesson.replace("lsns", "lesson");
+            
+            currentLessonNumber = lsnsLesson.replace("lsns", "");
+            currentLesson = `lesson${currentLessonNumber}`;
+            localStorage.setItem("currentLessonNumber", currentLessonNumber);
+            localStorage.setItem("currentLesson", currentLesson);
+            
+            loadLesson(lessonClass);
+            hideLSNS();
+        })
+    })
+});
+
+lsns_back.addEventListener("click", ()=>{
+    hideLSNS();
+})
+
+let learningHeader = document.querySelector(".learning-header");
+
+learningHeader.addEventListener("click", ()=>{
+    showLSNS();
 })
