@@ -38,7 +38,10 @@ body {
 .current-chapter-thumbnail {
     width: 100%;
     height: 190px;
-    background: blue;
+    background-image: url(/imgs/first.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .current-chapter-data {
@@ -117,6 +120,7 @@ button.current-chapter-start {
     margin-left: 25px;
     margin-top: 15px;
     border-radius: 20px;
+    background: #6935ee4a;
 }
 
 .fill {
@@ -124,10 +128,11 @@ button.current-chapter-start {
     height: 12.5px;
     border-radius: 20px;
     background: #6A35EE;
+    box-shadow: 0 0 10px #6A35EE4a;
 }
 
 .main-container {
-    display: none;
+    transition: opacity 1s;
 }
 
 .learning-header {
@@ -251,4 +256,107 @@ button.current-chapter-start {
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+sub {
+    font-size: 12px;
+}
+
+.learning-container {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.lsns {
+    width: 100vw;
+    height: 100vh;
+    background: var(--main);
+    opacity: 0;
+    display: none;
+    transition: opacity 1s;
+    z-index: 999;
+    position: absolute;
+}
+
+.lsns .list {
+    width: calc(100vw - 50px);
+    height: calc(100vh - 120px);
+    position: absolute;
+    transform: translate(-50%, 0px);
+    left: 50%;
+    bottom: 25px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.lsns .list::-webkit-scrollbar {
+    display: none;
+}
+
+.lsns .list .lsns-element {
+    width: 99%;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px solid var(--main-gray);
+    flex-shrink: 0;
+}
+
+.lsns .list .lsns-element .lsns-number {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--main-purple);
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--main-purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform: translate(0px, -50%);
+    left: 26px;
+    top: 50%;
+}
+
+.lsns-chapter {
+    font-size: 16px;
+    color: #fff;
+    height: 16px;
+}
+
+.lsns-lesson {
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+    height: calc(100% - 16px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.lsns-data {
+    width: 64%;
+    height: 60%;
+    position: relative;
+    transform: translate(0px, 0px);
+    left: 90px;
+    bottom: 18px;
+}
+
+button.lsns-back {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--main-purple);
+    color: var(--main-purple);
+    background: transparent;
+    outline: none;
+    position: absolute;
+    transform: translate(0px, 0px);
+    left: 25px;
+    top: 30px;
 }
